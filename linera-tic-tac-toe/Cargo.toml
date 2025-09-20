@@ -1,0 +1,28 @@
+[package]
+name = "tic-tac-toe"
+version = "0.1.0"
+authors = ["Linera <contact@linera.io>"]
+edition = "2021"
+
+[dependencies]
+async-graphql = "7.0"
+bcs = "0.1"
+linera-sdk = { git = "https://github.com/linera-io/linera-protocol.git" }
+log = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+test-log = "0.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
+linera-sdk = { git = "https://github.com/linera-io/linera-protocol.git", features = ["test", "wasmer"] }
+
+[dev-dependencies]
+linera-sdk = { git = "https://github.com/linera-io/linera-protocol.git", features = ["test"] }
+
+[[bin]]
+name = "tic_tac_toe_contract"
+path = "src/contract.rs"
+
+[[bin]]
+name = "tic_tac_toe_service"
+path = "src/service.rs"
